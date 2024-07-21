@@ -67,7 +67,7 @@ const authMiddleware = (req, res, next) => {
 };
 
 
-/// Post / Verifying credetials for loginn btn
+/// Post / Verifying credetials for login btn
 
 router.post('/admin', async (req, res) => {
  try {
@@ -84,7 +84,7 @@ router.post('/admin', async (req, res) => {
   const token = jwt.sign({ userId: user._id }, jwtSecret);
   res.cookie('token', token, { httpOnly: true });
 
-  res.redirect('/dashboard', { layout: adminLayout });
+  res.redirect('/dashboard');
  } catch (error) {
   console.log(error);
  }
@@ -195,9 +195,9 @@ router.delete('/delete-post/:id', authMiddleware, async (req, res) => {
 
 
 /// Admin Logout button
-router.get('/logout', authMiddleware, (req, res) => {
+router.get('/logout', (req, res) => {
  res.clearCookie('token');
- res.redirect('/`');
+ res.redirect('/');
  // setTimeout(() => {
  //  res.redirect('../index')
  // }, 2000);
